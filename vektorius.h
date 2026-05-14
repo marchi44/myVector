@@ -157,4 +157,40 @@ class myVector {
         if(newCapacity > _capacity)
             resize(newCapacity);
     }
+
+    iterator insert(iterator pos, const T& value) {
+        size_t index = pos - begin();
+
+        if (_size == _capacity) {
+            reserve((_capacity == 0) ? 1 : _capacity * 2);
+        }
+
+        iterator newPos = begin() + index;
+
+        // Pastumiame visus elementus į dešinę, pradedant nuo galo
+        for (size_t i = _size; i > index; --i) {
+            data[i] = std::move(data[i - 1]);
+        }
+
+        data[index] = value;
+        _size++;
+        return begin() + index;
+    }
+
+    iterator erase(iterator pos) {
+        if (pos < begin() || pos >= end()) {
+            throw std::out_of_range("Erase position out of bounds");
+        }
+
+        size_t index = pos - begin();
+
+        // Pastumiame visus elementus iš dešinės į kairę per vieną poziciją
+        for (size_t i = index; i < _size - 1; ++i) {
+            data[i] = std::move(data[i + 1]);
+        }
+
+        _size--;
+    
+        return begin() + index;
+    }
 };
