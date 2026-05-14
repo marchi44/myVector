@@ -22,6 +22,27 @@ class myVector {
     myVector() :
         data(nullptr), _size(0), _capacity(0) {}
     
+    // Konstruktorius su zinomu vektoriaus dydziu
+    myVector(size_t n) : _size(n), _capacity(n) {
+        if (n > 0) {
+            data = new T[n];
+        } else {
+            data = nullptr;
+        }
+    }
+
+    // Konstruktorius jei zinomas vektoriaus dydis ir naudotojas nori ji uzpildyti kazkokia reiksme
+    myVector(size_t n, const T& initialValue) : _size(n), _capacity(n) {
+        if (n > 0) {
+            data = new T[n];
+            for (size_t i = 0; i < n; i++) {
+                data[i] = initialValue;
+            }
+        } else {
+            data = nullptr;
+        }
+    }
+    
     //destruktorius
     ~myVector() {
         delete[] data;
