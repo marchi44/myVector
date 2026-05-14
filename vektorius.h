@@ -17,6 +17,12 @@ class myVector {
         _capacity = newCapacity;
     }
 
+    void swap(myVector& other) noexcept {
+        std::swap(data, other.data);
+        std::swap(_size, other._size);
+        std::swap(_capacity, other._capacity);
+    }
+
     public:
     //default konstruktorius
     myVector() :
@@ -48,6 +54,23 @@ class myVector {
         delete[] data;
         _size = 0;
         _capacity = 0;
+    }
+
+    //copy konstruktoriai
+    myVector(const myVector& other) : _size(other._size), _capacity(other._capacity) {
+        if (other._capacity > 0) {
+            data = new T[other._capacity];
+            for (size_t i = 0; i < _size; i++) {
+                data[i] = other.data[i];
+            }
+        } else {
+            data = nullptr;
+        }
+    }
+
+    myVector& operator=(myVector other) { 
+        this->swap(other);
+        return *this;
     }
 
     T& operator[] (size_t index) {
