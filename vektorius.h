@@ -28,5 +28,18 @@ class myVector {
         _size = 0;
         _capacity = 0;
     }
-    
+
+    void push_back(const T& value){
+        if(_size == _capacity){
+            size_t newCapacity = (_capacity == 0) ? 1 : _capacity * 2;
+            resize(newCapacity);
+        }
+        data[_size++] = value;
+    }
+
+    void pop_back(){
+        if(_size > 0)
+            --_size;
+    }
+
 };
