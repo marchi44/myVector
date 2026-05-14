@@ -68,9 +68,18 @@ class myVector {
         }
     }
 
+    //universalus copy/move priskyrimo operatorius
     myVector& operator=(myVector other) { 
         this->swap(other);
         return *this;
+    }
+
+    //move konstruktoriai
+    myVector(myVector&& other) noexcept 
+    : data(other.data), _size(other._size), _capacity(other._capacity) {
+        other.data = nullptr;
+        other._size = 0;
+        other._capacity = 0;
     }
 
     T& operator[] (size_t index) {
