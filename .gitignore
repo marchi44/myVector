@@ -69,3 +69,4 @@ Testing/
 .cache/
 test_functions
 myProgram
+benchmark
