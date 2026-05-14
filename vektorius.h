@@ -82,6 +82,18 @@ class myVector {
         other._capacity = 0;
     }
 
+    T& at(size_t index) {
+        if (index >= _size)
+            throw std::out_of_range("Index out of range");
+        return data[index];
+    }
+
+    const T& at(const size_t index) const{
+        if (index >= _size)
+            throw std::out_of_range("Index out of range");
+        return data[index];
+    }
+
     T& operator[] (size_t index) {
         return data[index];
     }
@@ -111,5 +123,33 @@ class myVector {
 
     void clear() {
         _size = 0;
+    }
+
+    T& front() {
+        return data[0];
+    }
+    const T& front() const{
+        return data[0];
+    }
+
+    T& back() {
+        return data[_size - 1];
+    }
+    const T& back() const{
+        return data[_size - 1];
+    }
+
+    T* begin() {
+        return data;
+    }
+    const T* begin() const{
+        return data;
+    }
+
+    T* end() {
+        return data + _size;
+    }
+    const T* end() const{
+        return data + _size;
     }
 };
