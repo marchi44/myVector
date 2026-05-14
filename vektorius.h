@@ -29,7 +29,7 @@ class myVector {
         data(nullptr), _size(0), _capacity(0) {}
     
     // Konstruktorius su zinomu vektoriaus dydziu
-    myVector(size_t n) : _size(n), _capacity(n) {
+    explicit myVector(size_t n) : _size(n), _capacity(n) {
         if (n > 0) {
             data = new T[n];
         } else {
@@ -38,7 +38,7 @@ class myVector {
     }
 
     // Konstruktorius jei zinomas vektoriaus dydis ir naudotojas nori ji uzpildyti kazkokia reiksme
-    myVector(size_t n, const T& initialValue) : _size(n), _capacity(n) {
+    explicit myVector(size_t n, const T& initialValue) : _size(n), _capacity(n) {
         if (n > 0) {
             data = new T[n];
             for (size_t i = 0; i < n; i++) {
@@ -151,5 +151,10 @@ class myVector {
     }
     const T* end() const{
         return data + _size;
+    }
+
+    void reserve(size_t newCapacity) {
+        if(newCapacity > _capacity)
+            resize(newCapacity);
     }
 };
