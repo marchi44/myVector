@@ -42,4 +42,9 @@ class myVector {
             --_size;
     }
 
+    size_t size() const {return _size};
+
+    size_t capacity() const {return _capacity};
+
+    bool empty() const {return _size == 0};
 };
