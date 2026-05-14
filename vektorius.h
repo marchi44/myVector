@@ -24,6 +24,7 @@ class myVector {
     }
 
     public:
+    using iterator = T*;
     //default konstruktorius
     myVector() :
         data(nullptr), _size(0), _capacity(0) {}
