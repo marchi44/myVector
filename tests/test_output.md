@@ -27,5 +27,13 @@ iterator invalidation tikrinimą ir kitus standarto
 reikalavimus. 
 - `myVector` yra minimali implementacija be šių sluoksnių,
 todėl `push_back` ciklas vykdomas greičiau. 
-- Abu vektoriai naudoja tą pačią
-padvigubinimo strategiją, todėl realokacijų skaičius vienodas.
+
+## Atminties perskirstymų skaičius (100 000 000 elementų)
+
+| Konteineris | Perskirstymų sk. |
+|---|---|
+| `std::vector` | 27 |
+| `myVector` | 27 |
+
+Abu vektoriai naudoja padvigubinimo strategiją (capacity × 2), todėl
+perskirstymų skaičius identiškas — ⌈log₂(100 000 000)⌉ = 27.
