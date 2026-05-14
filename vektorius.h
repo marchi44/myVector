@@ -29,6 +29,14 @@ class myVector {
         _capacity = 0;
     }
 
+    T& operator[] (size_t index) {
+        return data[index];
+    }
+
+    const T& operator[] (size_t index) const {
+        return data[index];
+    }
+
     void push_back(const T& value){
         if(_size == _capacity){
             size_t newCapacity = (_capacity == 0) ? 1 : _capacity * 2;
@@ -47,4 +55,8 @@ class myVector {
     size_t capacity() const {return _capacity};
 
     bool empty() const {return _size == 0};
+
+    void clear() {
+        _size = 0;
+    }
 };
