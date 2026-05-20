@@ -194,4 +194,24 @@ class myVector {
     
         return begin() + index;
     }
+
+    void shrink_to_fit() {
+        if (_size == _capacity) return;
+
+        if (_size == 0) {
+            delete[] data;
+            data = nullptr;
+            _capacity = 0;
+            return;
+        }
+
+        T* newData = new T[_size];
+        for (size_t i = 0; i < _size; ++i) {
+            newData[i] = std::move(data[i]);
+        }
+
+        delete[] data;
+        data = newData;
+        _capacity = _size;
+    }
 };
